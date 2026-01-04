@@ -1,7 +1,8 @@
 # CLOTH Studio — Archive 2026
 
 A high-end, brutalist minimalist fashion platform. Engineered for visual consistency, modular technical data documentation, and premium e-commerce interactions.
-[View Live Demo](https://harshalloke.github.io/clothing/)
+
+Live Demo : [Cloth](https://harshalloke.github.io/clothing/)
 
 ## Technical Stack
 - **Core**: HTML5, Vanilla JavaScript
