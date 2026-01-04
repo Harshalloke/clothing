@@ -1,0 +1,14 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Project Specific
+.antigravityignore
+.gemini/
+tmp/
+.vscode/
+
+# Build Assets (if any)
+node_modules/
+dist/
+build/

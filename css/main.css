@@ -1,0 +1,220 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Base Styles */
+:root {
+    --accent: #FF3E00;
+    --brandBlack: #000000;
+    --brandWhite: #FFFFFF;
+}
+
+* {
+    cursor: none;
+    box-sizing: border-box;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    * {
+        cursor: auto !important;
+    }
+
+    .cursor-follower,
+    .cursor-label,
+    .spotlight-env {
+        display: none !important;
+    }
+}
+
+body {
+    background-color: var(--brandWhite);
+    color: var(--brandBlack);
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* Brutalist Utilities */
+.border-grid {
+    border: 1px solid #000;
+}
+
+.border-b-grid {
+    border-bottom: 1px solid #000;
+}
+
+.border-r-grid {
+    border-right: 1px solid #000;
+}
+
+.overflow-mask {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Smooth Scroll (Lenis) */
+html.lenis {
+    height: auto;
+}
+
+.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+/* Custom Cursor */
+.cursor-follower {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+}
+
+.cursor-follower::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 62, 0, 0.5);
+    border-radius: 50%;
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-follower.active {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+}
+
+.cursor-follower.active::after {
+    width: 60px;
+    height: 60px;
+    border-color: #fff;
+}
+
+.cursor-label {
+    position: fixed;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: #fff;
+    pointer-events: none;
+    z-index: 10000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: none;
+    font-weight: bold;
+}
+
+/* Environment Spotlight */
+.spotlight-env {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(255, 62, 0, 0.05), transparent 80%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 3D Dynamics */
+.hero-perspective {
+    perspective: 1200px;
+}
+
+.perspective-container {
+    perspective: 2000px;
+}
+
+.tilt-3d {
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    transform-style: preserve-3d;
+}
+
+.tilt-3d :is(img, .card-content) {
+    transform: translateZ(50px);
+}
+
+.reveal-3d {
+    transform: perspective(1000px) rotateX(10deg) translateY(100px);
+    opacity: 0;
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-3d.active {
+    transform: perspective(1000px) rotateX(0deg) translateY(0px);
+    opacity: 1;
+}
+
+/* Component Styles */
+.hero-title {
+    transition: color 0.4s ease, -webkit-text-stroke 0.4s ease;
+}
+
+.hero-title-group:hover .hero-title {
+    color: transparent !important;
+    -webkit-text-stroke: 1px black;
+}
+
+@media (max-width: 768px) {
+    .archive-year-marker {
+        writing-mode: horizontal-tb;
+        transform: rotate(0deg);
+        font-size: 8vw !important;
+        opacity: 0.15 !important;
+    }
+
+    .archive-grid-item {
+        padding: 2rem !important;
+    }
+}
+
+.product-card .lifestyle-img {
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .lifestyle-img {
+    opacity: 1;
+}
+
+.product-card:hover .base-img {
+    transform: scale(1.05);
+}
+
+.base-img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile Nav Utilities */
+.mobile-nav-open {
+    overflow: hidden;
+}
+
+#mobile-menu {
+    transform: translateY(-100%);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#mobile-menu.active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 12vw !important;
+    }
+}

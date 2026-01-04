@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="selection:bg-[#FF3E00] selection:text-white">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT — CLOTH Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#FF3E00',
+                        brandBlack: '#000000',
+                        brandWhite: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <style>
+        .size-btn.active {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-brandWhite text-brandBlack font-sans antialiased overflow-x-hidden">
+    <!-- Interactive Elements -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-label">Gallery</div>
+    <div class="spotlight-env"></div>
+
+    <header id="header" class="fixed top-0 left-0 w-full z-50 border-b-grid backdrop-blur-md bg-white/70">
+        <nav class="flex items-center justify-between px-6 py-4 md:px-12">
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-2xl font-black tracking-tighter">CLOTH</a>
+                <div class="hidden lg:flex gap-6 uppercase text-[10px] font-mono tracking-widest">
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                    <a href="index.html#trending" class="hover:text-accent transition-colors">Trending</a>
+                    <a href="archive.html" class="hover:text-accent transition-colors">Archive</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="cart.html"
+                    class="magnetic-btn border border-black px-4 py-1 text-[10px] font-mono uppercase tracking-widest hover:bg-black hover:text-white transition-all">
+                    Cart (0)
+                </a>
+                <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2 z-[100]">
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brandWhite z-[60] lg:hidden flex flex-col justify-center px-12 pt-24">
+        <button id="close-menu"
+            class="absolute top-8 right-8 p-4 flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
+            Close
+            <div class="relative w-6 h-6">
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black rotate-45"></span>
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black -rotate-45"></span>
+            </div>
+        </button>
+        <div class="flex flex-col gap-8">
+            <a href="shop.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Shop</a>
+            <a href="index.html#trending"
+                class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Trending</a>
+            <a href="archive.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Archive</a>
+            <a href="cart.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Cart</a>
+        </div>
+    </div>
+
+    <main class="pt-32 min-h-screen">
+        <section class="grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-8rem)]">
+            <!-- Left: Product Image -->
+            <div
+                class="border-b-grid md:border-b-0 md:border-r-grid flex items-center justify-center p-12 bg-[#fafafa]">
+                <div id="product-img-container" class="w-full max-w-lg tilt-3d">
+                    <img id="product-img" src="assets/img/Untitled-1.png" alt="Product Name"
+                        class="w-full h-full object-contain">
+                </div>
+            </div>
+
+            <!-- Right: Product Info -->
+            <div class="p-8 md:p-24 flex flex-col justify-center">
+                <div class="mb-12">
+                    <span id="product-sku"
+                        class="font-mono text-[10px] uppercase tracking-widest opacity-40 mb-4 block">REF_ID:
+                        #MS-01</span>
+                    <h1 id="product-name"
+                        class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.8] mb-6">Delta
+                        Shell 02</h1>
+                    <div id="product-price" class="text-2xl font-mono font-medium text-accent">$640.00</div>
+                </div>
+
+                <div class="mb-12">
+                    <p id="product-desc"
+                        class="font-mono text-xs leading-relaxed uppercase tracking-wider opacity-60 mb-8 max-w-md">
+                        Advanced 3-layer technical shell designed for maximum atmospheric protection. Features fully
+                        taped seams and waterproof membrane.
+                    </p>
+
+                    <div class="flex flex-col gap-4">
+                        <span class="font-mono text-[10px] uppercase opacity-40">Select Size</span>
+                        <div class="flex gap-2">
+                            <button
+                                class="size-btn border border-black/20 w-12 h-12 text-[10px] font-mono hover:border-black transition-colors"
+                                data-size="S">S</button>
+                            <button
+                                class="size-btn border border-black/20 w-12 h-12 text-[10px] font-mono hover:border-black transition-colors active"
+                                data-size="M">M</button>
+                            <button
+                                class="size-btn border border-black/20 w-12 h-12 text-[10px] font-mono hover:border-black transition-colors"
+                                data-size="L">L</button>
+                            <button
+                                class="size-btn border border-black/20 w-12 h-12 text-[10px] font-mono hover:border-black transition-colors"
+                                data-size="XL">XL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <button id="add-to-cart"
+                        class="w-full bg-black text-white py-6 text-sm font-bold uppercase tracking-[0.2em] hover:bg-accent transition-colors duration-500">
+                        Add to Registry
+                    </button>
+                    <div class="flex justify-between font-mono text-[8px] opacity-40 uppercase tracking-widest">
+                        <span>Worldwide Express Shipping</span>
+                        <span>Free Returns</span>
+                    </div>
+                </div>
+
+                <!-- Technical Specs Accordion -->
+                <div class="mt-24 border-t-grid pt-8">
+                    <details class="group cursor-pointer">
+                        <summary
+                            class="flex justify-between items-center font-mono text-[10px] uppercase tracking-widest group-hover:text-accent transition-colors list-none">
+                            Technical Specifications
+                            <span class="group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <div class="mt-8 font-mono text-[10px] leading-relaxed opacity-60 uppercase space-y-2">
+                            <p>• 100% Ripstop Nylon Shell</p>
+                            <p>• 20k/20k Waterproof Breathable Membrane</p>
+                            <p>• Laser cut ventilation ports</p>
+                            <p>• Magnetic pocket enclosures</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="border-t-grid">
+            <div class="px-6 py-12 md:px-12 border-b-grid">
+                <h2 class="text-4xl font-black uppercase tracking-tighter">Complete the System</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                <div class="product-card border-b-grid md:border-b-0 md:border-r-grid p-8 group cursor-pointer"
+                    onclick="window.location.href='product.html?id=combat-pants'">
+                    <img src="assets/img/technical_combat_pants.png"
+                        class="w-full aspect-square object-contain mb-8 group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0">
+                    <h4 class="font-bold uppercase">Combat Pants</h4>
+                    <p class="font-mono text-[10px] opacity-40">$310.00</p>
+                </div>
+                <!-- Add 2 more if needed -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white p-12 md:p-24">
+        <div class="flex justify-between items-end opacity-20 font-mono text-[8px] uppercase tracking-widest">
+            <p>© 2026 CLOTH STUDIO</p>
+            <p>DESIGN: AG-CORE_V2</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        const productsDB = {
+            'delta-shell': {
+                id: 'delta-shell',
+                name: 'Delta Shell 02',
+                sku: '#MS-01',
+                price: 640.00,
+                desc: 'Advanced 3-layer technical shell designed for maximum atmospheric protection. Features fully taped seams and waterproof membrane.',
+                img: 'assets/img/hero_product_high_end_1767509554719.png'
+            },
+            'alpha-shell': {
+                id: 'alpha-shell',
+                name: 'Alpha Shell 01',
+                sku: '#SJ-991B',
+                price: 520.00,
+                desc: 'Ultralight performance shell optimized for urban mobility and high-intensity movement.',
+                img: 'assets/img/Untitled-1.png'
+            },
+            'combat-pants': {
+                id: 'combat-pants',
+                name: 'Combat Pants',
+                sku: '#LN-310P',
+                price: 310.00,
+                desc: 'Heavyweight ripstop utility trousers with articulated knee construction for unrestricted range of motion.',
+                img: 'assets/img/technical_combat_pants.png'
+            }
+        };
+
+        // Populate product data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id') || 'delta-shell';
+        const product = productsDB[productId] || productsDB['delta-shell'];
+
+        document.getElementById('product-name').textContent = product.name;
+        document.getElementById('product-sku').textContent = `REF_ID: ${product.sku}`;
+        document.getElementById('product-price').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('product-desc').textContent = product.desc;
+        document.getElementById('product-img').src = product.img;
+
+        // Size Selection Logic
+        let selectedSize = 'M';
+        const sizeBtns = document.querySelectorAll('.size-btn');
+        sizeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                sizeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedSize = btn.dataset.size;
+            });
+        });
+
+        // Add to Cart Logic
+        document.getElementById('add-to-cart').addEventListener('click', (e) => {
+            addToCart({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                img: product.img,
+                size: selectedSize
+            });
+
+            // Feedback animation
+            const btn = e.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'ADDED TO REGISTRY';
+            btn.classList.add('bg-accent');
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.remove('bg-accent');
+            }, 2000);
+        });
+
+        window.addEventListener('load', () => {
+            gsap.from('.reveal-3d', { opacity: 0, y: 30, duration: 1, stagger: 0.1 });
+
+            // Mobile Menu Logic
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const spans = menuToggle.querySelectorAll('span');
+            const links = mobileMenu.querySelectorAll('a');
+
+            const toggleMenu = (forceClose = false) => {
+                const isActive = forceClose ? true : mobileMenu.classList.contains('active');
+
+                if (isActive || forceClose) {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                } else {
+                    mobileMenu.classList.add('active');
+                    document.body.classList.add('mobile-nav-open');
+                    gsap.to(spans[0], { y: 4, rotate: 45, duration: 0.3 });
+                    gsap.to(spans[1], { y: -4, rotate: -45, duration: 0.3 });
+                }
+            };
+
+            menuToggle.addEventListener('click', () => toggleMenu());
+            closeMenu.addEventListener('click', () => toggleMenu(true));
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

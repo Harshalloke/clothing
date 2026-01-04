@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="selection:bg-[#FF3E00] selection:text-white">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP — CLOTH Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#FF3E00',
+                        brandBlack: '#000000',
+                        brandWhite: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+</head>
+
+<body class="bg-brandWhite text-brandBlack font-sans antialiased overflow-x-hidden">
+    <div class="cursor-follower"></div>
+    <div class="cursor-label">View</div>
+    <div class="spotlight-env"></div>
+
+    <header id="header" class="fixed top-0 left-0 w-full z-50 border-b-grid backdrop-blur-md bg-white/70">
+        <nav class="flex items-center justify-between px-6 py-4 md:px-12">
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-2xl font-black tracking-tighter">CLOTH</a>
+                <div class="hidden lg:flex gap-6 uppercase text-[10px] font-mono tracking-widest">
+                    <a href="shop.html" class="text-accent underline">Shop</a>
+                    <a href="index.html#trending" class="hover:text-accent transition-colors">Trending</a>
+                    <a href="archive.html" class="hover:text-accent transition-colors">Archive</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="cart.html"
+                    class="magnetic-btn border border-black px-4 py-1 text-[10px] font-mono uppercase tracking-widest hover:bg-black hover:text-white transition-all">
+                    Cart (0)
+                </a>
+                <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2 z-[100]">
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brandWhite z-[60] lg:hidden flex flex-col justify-center px-12 pt-24">
+        <button id="close-menu"
+            class="absolute top-8 right-8 p-4 flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
+            Close
+            <div class="relative w-6 h-6">
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black rotate-45"></span>
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black -rotate-45"></span>
+            </div>
+        </button>
+        <div class="flex flex-col gap-8">
+            <a href="shop.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Shop</a>
+            <a href="index.html#trending"
+                class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Trending</a>
+            <a href="archive.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Archive</a>
+            <a href="cart.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Cart</a>
+        </div>
+    </div>
+
+    <main class="pt-32">
+        <section class="px-6 md:px-12 mb-24">
+            <h1 class="text-5xl md:text-[12vw] font-black uppercase tracking-tighter leading-[0.8] mb-12">
+                Collection<br>Catalogue</h1>
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-grid pb-8 uppercase font-mono text-[10px] tracking-[0.2em] gap-6">
+                <div>Showing [ 12 ] Articles</div>
+                <div class="flex gap-8 md:gap-12 overflow-x-auto no-scrollbar w-full md:w-auto pb-4 md:pb-0">
+                    <button class="hover:text-accent transition-colors underline whitespace-nowrap">All</button>
+                    <button class="hover:text-accent transition-colors whitespace-nowrap">Outerwear</button>
+                    <button class="hover:text-accent transition-colors whitespace-nowrap">Lower</button>
+                    <button class="hover:text-accent transition-colors whitespace-nowrap">Accessories</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t-grid">
+            <!-- Reuse product cards -->
+            <div class="product-card border-b-grid md:border-r-grid group cursor-pointer p-6"
+                onclick="window.location.href='product.html?id=delta-shell'">
+                <div class="relative aspect-[3/4] overflow-hidden bg-white border border-black mb-6">
+                    <img src="assets/img/hero_product_high_end_1767509554719.png"
+                        class="base-img absolute inset-0 w-full h-full object-contain">
+                </div>
+                <div class="flex justify-between items-top">
+                    <div>
+                        <h4 class="font-bold uppercase text-lg tracking-tighter">Delta Shell 02</h4>
+                        <p class="font-mono text-[10px] opacity-50">3-Layer Tech / Stealth Grey</p>
+                    </div>
+                    <div class="font-mono text-xs font-medium">$640</div>
+                </div>
+            </div>
+            <!-- More product cards... -->
+            <div class="product-card border-b-grid md:border-r-grid group cursor-pointer p-6"
+                onclick="window.location.href='product.html?id=alpha-shell'">
+                <div class="relative aspect-[3/4] overflow-hidden bg-white border border-black mb-6">
+                    <img src="assets/img/Untitled-1.png" class="base-img absolute inset-0 w-full h-full object-contain">
+                </div>
+                <div class="flex justify-between items-top">
+                    <div>
+                        <h4 class="font-bold uppercase text-lg tracking-tighter">Alpha Shell 01</h4>
+                        <p class="font-mono text-[10px] opacity-50">Gore-Tex / Matte Black</p>
+                    </div>
+                    <div class="font-mono text-xs font-medium">$520</div>
+                </div>
+            </div>
+            <!-- Repeat cards -->
+            <div class="product-card border-b-grid group cursor-pointer p-6"
+                onclick="window.location.href='product.html?id=combat-pants'">
+                <div class="relative aspect-[3/4] overflow-hidden bg-white border border-black mb-6">
+                    <img src="assets/img/technical_combat_pants.png"
+                        class="base-img absolute inset-0 w-full h-full object-contain grayscale">
+                </div>
+                <div class="flex justify-between items-top">
+                    <div>
+                        <h4 class="font-bold uppercase text-lg tracking-tighter">Combat Pants</h4>
+                        <p class="font-mono text-[10px] opacity-50">Ripstop Nylon / Anthracite</p>
+                    </div>
+                    <div class="font-mono text-xs font-medium">$310</div>
+                </div>
+            </div>
+
+            <div class="product-card border-b-grid group cursor-pointer p-6 md:border-r-grid">
+                <div class="relative aspect-[3/4] overflow-hidden bg-white border border-black mb-6">
+                    <img src="assets/img/modular_bag.png"
+                        class="base-img absolute inset-0 w-full h-full object-contain">
+                </div>
+                <div class="flex justify-between items-top">
+                    <div>
+                        <h4 class="font-bold uppercase text-lg tracking-tighter">Modular Bag v1</h4>
+                        <p class="font-mono text-[10px] opacity-50">Waterproof / Magnetic</p>
+                    </div>
+                    <div class="font-mono text-xs font-medium">$180</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white p-12 md:p-24 mt-24">
+        <div
+            class="flex flex-col md:flex-row justify-between items-end border-t border-white/20 pt-12 opacity-40 font-mono text-[8px]">
+            <p>© 2026 CLOTH STUDIO. ALL RIGHTS RESERVED.</p>
+            <p>DESIGNED IN STOCKHOLM / BUILT WORLDWIDE</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            gsap.from('h1', { y: 100, opacity: 0, duration: 1.5, ease: 'expo.out' });
+
+            // Mobile Menu Logic
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const spans = menuToggle.querySelectorAll('span');
+            const links = mobileMenu.querySelectorAll('a');
+
+            const toggleMenu = (forceClose = false) => {
+                const isActive = forceClose ? true : mobileMenu.classList.contains('active');
+
+                if (isActive || forceClose) {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                } else {
+                    mobileMenu.classList.add('active');
+                    document.body.classList.add('mobile-nav-open');
+                    gsap.to(spans[0], { y: 4, rotate: 45, duration: 0.3 });
+                    gsap.to(spans[1], { y: -4, rotate: -45, duration: 0.3 });
+                }
+            };
+
+            menuToggle.addEventListener('click', () => toggleMenu());
+            closeMenu.addEventListener('click', () => toggleMenu(true));
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

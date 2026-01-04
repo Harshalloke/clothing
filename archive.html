@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="selection:bg-[#FF3E00] selection:text-white">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ARCHIVE — CLOTH Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#FF3E00',
+                        brandBlack: '#000000',
+                        brandWhite: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <style>
+        .archive-year-marker {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .archive-year-marker {
+                writing-mode: horizontal-tb;
+                transform: rotate(0deg);
+            }
+        }
+
+        .header-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body class="bg-brandWhite text-brandBlack font-sans antialiased overflow-x-hidden">
+    <div class="cursor-follower"></div>
+    <div class="cursor-label">History</div>
+    <div class="spotlight-env"></div>
+
+    <header id="header" class="fixed top-0 left-0 w-full z-50 border-b-grid backdrop-blur-md bg-white/70">
+        <nav class="flex items-center justify-between px-6 py-4 md:px-12">
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-2xl font-black tracking-tighter">CLOTH</a>
+                <div class="hidden lg:flex gap-6 uppercase text-[10px] font-mono tracking-widest">
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                    <a href="index.html#trending" class="hover:text-accent transition-colors">Trending</a>
+                    <a href="archive.html" class="text-accent underline">Archive</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex font-mono text-[8px] opacity-40 uppercase tracking-[0.3em] gap-4">
+                    <span>Core_Registry: A.09</span>
+                    <span class="text-accent">•</span>
+                    <span>Systems_Online</span>
+                </div>
+                <a href="cart.html"
+                    class="magnetic-btn border border-black px-4 py-1 text-[10px] font-mono uppercase tracking-widest hover:bg-black hover:text-white transition-all">
+                    Cart (0)
+                </a>
+                <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2 z-[100]">
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brandWhite z-[60] lg:hidden flex flex-col justify-center px-12 pt-24">
+        <button id="close-menu"
+            class="absolute top-8 right-8 p-4 flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
+            Close
+            <div class="relative w-6 h-6">
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black rotate-45"></span>
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black -rotate-45"></span>
+            </div>
+        </button>
+        <div class="flex flex-col gap-8">
+            <a href="shop.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Shop</a>
+            <a href="index.html#trending"
+                class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Trending</a>
+            <a href="archive.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Archive</a>
+            <a href="cart.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Cart</a>
+        </div>
+    </div>
+
+    <main class="pt-24 md:pt-32">
+        <!-- Hero Section -->
+        <section class="px-6 md:px-12 mb-24 md:mb-40 overflow-hidden">
+            <div class="max-w-screen-2xl mx-auto">
+                <span
+                    class="font-mono text-[10px] uppercase tracking-[0.5em] opacity-30 mb-6 block reveal-item">Repository_Core</span>
+                <h1
+                    class="text-5xl md:text-[12vw] font-black uppercase tracking-tighter leading-[0.85] mb-12 reveal-item break-words">
+                    Design<br>Legacy</h1>
+                <div class="max-w-md border-t border-black/10 pt-8 reveal-item">
+                    <p class="font-mono text-[11px] uppercase tracking-widest leading-relaxed opacity-60 italic">
+                        Visual documentation of technical evolution. Form, function, and modularity logged in sequence.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronology: 2025 -->
+        <section class="border-t border-black/10 relative">
+            <!-- Mobile Year Header -->
+            <div
+                class="sticky top-16 z-30 bg-white/90 backdrop-blur-md px-6 py-4 border-b border-black/10 flex justify-between items-center md:hidden">
+                <span class="font-black text-2xl tracking-tighter uppercase">2025_Registry</span>
+                <span class="font-mono text-[8px] opacity-40 uppercase">Log: MS-001/A</span>
+            </div>
+
+            <div class="flex flex-col md:flex-row">
+                <!-- Desktop Year Sidebar -->
+                <div class="hidden md:flex w-24 border-r border-black/10 flex-col items-center py-20">
+                    <span
+                        class="archive-year-marker font-black text-6xl opacity-5 uppercase tracking-widest sticky top-48">2025</span>
+                </div>
+
+                <!-- Technical Dossiers -->
+                <div class="flex-1">
+                    <div class="flex flex-col">
+                        <!-- Item 01 -->
+                        <div class="group grid grid-cols-1 md:grid-cols-2 border-b border-black/10">
+                            <div class="p-8 md:p-16 flex flex-col justify-center">
+                                <div
+                                    class="font-mono text-[9px] text-accent mb-6 uppercase tracking-[0.3em] flex items-center gap-4">
+                                    <span>[ MS-01 ]</span>
+                                    <span class="w-8 h-[1px] bg-accent/30"></span>
+                                    <span>Core_Prototype</span>
+                                </div>
+                                <h3
+                                    class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-tight">
+                                    Combat<br>System</h3>
+                                <p
+                                    class="font-mono text-[10px] opacity-50 uppercase tracking-widest leading-relaxed max-w-sm mb-10">
+                                    Engineered for kinetic articulation. 3-layer ripstop membrane with modular carriage
+                                    interface points.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 border border-black/10 text-[8px] font-mono uppercase tracking-widest">Cordura®</span>
+                                    <span
+                                        class="px-3 py-1 border border-black/10 text-[8px] font-mono uppercase tracking-widest">Articulated</span>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-[#fafafa] p-10 md:p-20 flex items-center justify-center relative overflow-hidden">
+                                <img src="assets/img/technical_combat_pants.png"
+                                    class="w-full h-auto max-w-sm grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2s] ease-out">
+                                <div
+                                    class="absolute bottom-6 right-6 font-mono text-[8px] opacity-20 uppercase tracking-[0.4em]">
+                                    Asset_102</div>
+                            </div>
+                        </div>
+
+                        <!-- Item 02 -->
+                        <div class="group grid grid-cols-1 md:grid-cols-2 border-b border-black/10">
+                            <div
+                                class="order-2 md:order-1 bg-[#f5f5f5] p-10 md:p-20 flex items-center justify-center relative overflow-hidden border-t md:border-t-0 border-black/10">
+                                <img src="assets/img/stealth_pique.png"
+                                    class="w-full h-auto max-w-sm grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2s] ease-out">
+                                <div
+                                    class="absolute bottom-6 left-6 font-mono text-[8px] opacity-20 uppercase tracking-[0.4em]">
+                                    Asset_103</div>
+                            </div>
+                            <div class="order-1 md:order-2 p-8 md:p-16 flex flex-col justify-center">
+                                <div
+                                    class="font-mono text-[9px] text-accent mb-6 uppercase tracking-[0.3em] flex items-center gap-4">
+                                    <span>[ AC-02 ]</span>
+                                    <span class="w-8 h-[1px] bg-accent/30"></span>
+                                    <span>Atmospheric</span>
+                                </div>
+                                <h3
+                                    class="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-tight">
+                                    Core<br>V2 Shell</h3>
+                                <p
+                                    class="font-mono text-[10px] opacity-50 uppercase tracking-widest leading-relaxed max-w-sm mb-10">
+                                    Vapor permeable moisture management system. Laser-etched ventilation grids for rapid
+                                    thermal regulation.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 border border-black/10 text-[8px] font-mono uppercase tracking-widest">20K
+                                        Breathable</span>
+                                    <span
+                                        class="px-3 py-1 border border-black/10 text-[8px] font-mono uppercase tracking-widest">Vapor
+                                        Tech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical R&D Banner -->
+        <section class="py-24 md:py-48 px-6 md:px-12 bg-black text-white overflow-hidden relative">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[100%] border border-white/5 skew-y-12 pointer-events-none">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 relative z-10 max-w-screen-2xl mx-auto">
+                <div class="reveal-item">
+                    <span class="font-mono text-accent text-[10px] uppercase tracking-[0.4em] mb-10 block italic">//
+                        Technical_R&D</span>
+                    <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-12">
+                        Precision<br>& Logic</h2>
+                    <p class="font-mono text-xs opacity-40 max-w-md uppercase tracking-widest leading-relaxed">
+                        Every prototype represents a calculated decision. Stress testing textile integrity in
+                        high-vibration urban environments.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-center gap-12 reveal-item">
+                    <div class="flex items-baseline gap-6 border-b border-white/10 pb-8">
+                        <span
+                            class="text-6xl font-black italic text-accent italic tracking-tighter leading-none">92%</span>
+                        <div class="flex-1">
+                            <span
+                                class="block font-mono text-[8px] uppercase tracking-widest opacity-40 mb-2">Registry_Status</span>
+                            <div class="h-[1px] bg-white/10 w-full overflow-hidden">
+                                <div class="h-full bg-accent w-[92%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="font-mono text-[9px] opacity-30 uppercase tracking-[0.3em]">Finalizing 2026 Core Registry
+                        Data...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronology: 2024 (Origin) -->
+        <section class="border-t border-black/10 relative">
+            <!-- Mobile Year Header -->
+            <div
+                class="sticky top-16 z-30 bg-white/90 backdrop-blur-md px-6 py-4 border-b border-black/10 flex justify-between items-center md:hidden">
+                <span class="font-black text-2xl tracking-tighter uppercase text-accent italic">Origin_Core</span>
+                <span class="font-mono text-[8px] opacity-40 uppercase">Year: 2024</span>
+            </div>
+
+            <div class="flex flex-col md:flex-row">
+                <!-- Desktop Year Sidebar -->
+                <div class="hidden md:flex w-24 border-r border-black/10 flex-col items-center py-20">
+                    <span
+                        class="archive-year-marker font-black text-6xl opacity-10 uppercase tracking-widest sticky top-48 text-accent">2024</span>
+                </div>
+
+                <!-- Foundation Entry -->
+                <div class="flex-1 grid grid-cols-1 md:grid-cols-2 border-b border-black/10">
+                    <div class="p-8 md:p-16 flex flex-col justify-center">
+                        <div class="font-mono text-[9px] text-accent mb-6 uppercase tracking-[0.3em] italic">V.1.0 //
+                            Foundation</div>
+                        <h3 class="text-5xl md:text-[8vw] font-black uppercase tracking-tighter mb-10 leading-[0.85]">
+                            The<br>Origin<br>Shell</h3>
+                        <p
+                            class="font-mono text-[10px] opacity-50 uppercase tracking-widest leading-relaxed max-w-sm mb-12">
+                            The architectural origin. Created to define the intersection between atmospheric barrier and
+                            modular utility.
+                        </p>
+                        <div class="inline-flex items-center gap-4 py-2 px-4 border border-black/5 self-start">
+                            <div class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></div>
+                            <span class="font-mono text-[9px] uppercase tracking-widest">Active_Archive_Status</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-[#f9f9f9] p-12 md:p-24 flex items-center justify-center relative overflow-hidden group border-t md:border-t-0 border-black/10">
+                        <img src="assets/img/Untitled-1.png"
+                            class="w-full h-auto max-w-md grayscale opacity-20 group-hover:opacity-100 group-hover:scale-110 transition-all duration-[3s] ease-out">
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                            <span class="text-accent text-8xl font-black italic tracking-tighter">V.1.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Big Type Footer -->
+        <section class="py-40 md:py-64 text-center overflow-hidden border-b border-black/10">
+            <h2
+                class="text-[30vw] font-black tracking-tighter leading-none opacity-5 hover:opacity-100 hover:text-accent transition-all duration-1000 cursor-default select-none pointer-events-none md:pointer-events-auto">
+                CLOTH®</h2>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white p-12 md:p-24">
+        <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-end gap-12">
+            <div class="w-full md:w-auto">
+                <a href="index.html" class="text-4xl font-black uppercase tracking-tighter block mb-12">Return_Apex</a>
+                <div class="flex gap-8 font-mono text-[9px] uppercase tracking-[0.2em] opacity-40">
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                    <a href="archive.html" class="hover:text-accent transition-colors">Archive</a>
+                    <a href="index.html" class="hover:text-accent transition-colors">Platform</a>
+                </div>
+            </div>
+            <div class="text-right w-full md:w-auto">
+                <p class="font-mono text-[9px] opacity-30 uppercase tracking-[0.4em] mb-4">Stockholm // Core_System</p>
+                <div id="back-to-top"
+                    class="inline-block border border-white/20 px-8 py-3 text-[9px] font-mono uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all cursor-pointer">
+                    Back_To_Top
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-screen-2xl mx-auto mt-24 pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 opacity-20 font-mono text-[8px] uppercase tracking-widest">
+            <p>© 2026 CLOTH STUDIO. PROTOCOL_SECURED.</p>
+            <p>System: ANTIGRAVITY_V4</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // General Entrance
+            gsap.from('.reveal-item', {
+                y: 60,
+                opacity: 0,
+                duration: 1.5,
+                ease: 'expo.out',
+                stagger: 0.15
+            });
+
+            // GSAP Scroll Reveals
+            gsap.utils.toArray('.group').forEach(item => {
+                gsap.from(item, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 1.5,
+                    ease: 'expo.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 95%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            // Mobile Menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const spans = menuToggle.querySelectorAll('span');
+
+            const toggleMenu = (forceClose = false) => {
+                const isActive = forceClose ? true : mobileMenu.classList.contains('active');
+
+                if (isActive || forceClose) {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                } else {
+                    mobileMenu.classList.add('active');
+                    document.body.classList.add('mobile-nav-open');
+                    gsap.to(spans[0], { y: 4, rotate: 45, duration: 0.3 });
+                    gsap.to(spans[1], { y: -4, rotate: -45, duration: 0.3 });
+                }
+            };
+
+            menuToggle.addEventListener('click', () => toggleMenu());
+            closeMenu.addEventListener('click', () => toggleMenu(true));
+
+            // Back to top
+            document.getElementById('back-to-top').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+
+</html>

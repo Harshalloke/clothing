@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="selection:bg-[#FF3E00] selection:text-white">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLOTH — Brutalist Minimalist Fashion</title>
+    <meta name="description" content="A high-end, minimalist clothing brand. Archive 2026 collection now available.">
+
+    <!-- Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#FF3E00',
+                        brandBlack: '#000000',
+                        brandWhite: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+</head>
+
+<body class="bg-brandWhite text-brandBlack font-sans antialiased overflow-x-hidden">
+
+    <!-- Interactive Elements -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-label">View</div>
+    <div class="spotlight-env"></div>
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-brandBlack flex items-center justify-center overflow-hidden">
+        <div class="relative text-center">
+            <h2 id="preloader-text"
+                class="text-white text-5xl md:text-8xl font-black uppercase tracking-tighter opacity-0 scale-90">
+                Hello
+            </h2>
+            <div id="preloader-progress-container" class="mt-8 w-48 h-[1px] bg-white/20 mx-auto overflow-hidden">
+                <div id="preloader-progress" class="w-0 h-full bg-accent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header id="header"
+        class="fixed top-0 left-0 w-full z-50 border-b-grid backdrop-blur-md bg-white/70 translate-y-[-100%]">
+        <nav class="flex items-center justify-between px-6 py-4 md:px-12">
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-2xl font-black tracking-tighter">CLOTH</a>
+                <div class="hidden lg:flex gap-6 uppercase text-[10px] font-mono tracking-widest">
+                    <a href="shop.html" class="hover:text-accent transition-colors">Shop</a>
+                    <a href="#trending" class="hover:text-accent transition-colors">Trending</a>
+                    <a href="archive.html" class="hover:text-accent transition-colors">Archive</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="font-mono text-[10px] uppercase tracking-widest hidden sm:block">Stockholm / 2026</div>
+                <a href="cart.html"
+                    class="magnetic-btn border border-black px-4 py-1 text-[10px] font-mono uppercase tracking-widest hover:bg-black hover:text-white transition-all cursor-pointer">
+                    Cart (0)
+                </a>
+                <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2 z-[100]">
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                    <span class="w-6 h-[1px] bg-black transition-transform"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-brandWhite z-[60] lg:hidden flex flex-col justify-center px-12 pt-24">
+        <button id="close-menu"
+            class="absolute top-8 right-8 p-4 flex items-center gap-4 font-mono text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity">
+            Close
+            <div class="relative w-6 h-6">
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black rotate-45"></span>
+                <span class="absolute top-1/2 left-0 w-full h-[1px] bg-black -rotate-45"></span>
+            </div>
+        </button>
+        <div class="flex flex-col gap-8">
+            <a href="shop.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Shop</a>
+            <a href="#trending"
+                class="mobile-link text-6xl font-black uppercase tracking-tighter hover:text-accent">Trending</a>
+            <a href="archive.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Archive</a>
+            <a href="cart.html" class="text-6xl font-black uppercase tracking-tighter hover:text-accent">Cart</a>
+        </div>
+        <div class="mt-auto pb-12 font-mono text-[10px] uppercase tracking-widest opacity-40">
+            Stockholm // v.2026
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen border-b-grid flex flex-col items-center justify-center pt-20">
+        <div class="absolute inset-0 grid grid-cols-4 pointer-events-none">
+            <div class="border-r-grid opacity-10"></div>
+            <div class="border-r-grid opacity-10"></div>
+            <div class="border-r-grid opacity-10"></div>
+            <div></div>
+        </div>
+
+        <div id="hero-img-container"
+            class="relative z-20 w-[80vw] md:w-[40vw] aspect-[3/4] scale-110 opacity-0 mb-8 cursor-pointer tilt-3d"
+            onclick="window.location.href='product.html?id=alpha-shell'">
+            <img src="assets/img/Untitled-1.png" alt="Hero Product" class="w-full h-full object-contain">
+        </div>
+
+        <div class="absolute bottom-12 left-6 md:bottom-24 md:left-24 hero-perspective">
+            <div class="hero-title-group cursor-default inline-block">
+                <h1 class="text-5xl md:text-[10vw] font-black leading-[0.85] tracking-tighter overflow-mask uppercase">
+                    <span class="hero-title inline-block">New Collection</span>
+                </h1>
+                <br>
+                <h1 class="text-5xl md:text-[10vw] font-black leading-[0.85] tracking-tighter overflow-mask uppercase">
+                    <span class="hero-title inline-block">2026 Series</span>
+                </h1>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 right-12 font-mono text-[10px] uppercase tracking-widest z-30 opacity-40">
+            [ ARCHIVE 2026 ]
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="border-b-grid py-4 overflow-hidden whitespace-nowrap bg-black text-white">
+        <div class="marquee-content inline-block font-mono text-sm uppercase tracking-widest">
+            STRICTLY MINIMALIST • SHIPPING WORLDWIDE • ARCHIVE 2026 DROP • LIMITED QUANTITIES • &nbsp;
+            STRICTLY MINIMALIST • SHIPPING WORLDWIDE • ARCHIVE 2026 DROP • LIMITED QUANTITIES • &nbsp;
+        </div>
+    </div>
+
+    <!-- Trending Section -->
+    <section id="trending" class="horizontal-scroll-section border-b-grid overflow-hidden bg-[#fafafa]">
+        <div class="px-6 py-12 md:px-12 flex justify-between items-end border-b-grid">
+            <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">Trending<br>Pieces</h2>
+            <p class="font-mono text-[10px] uppercase mb-2">[ SCROLL HORIZONTALLY ]</p>
+        </div>
+        <div class="horizontal-container flex h-[60vh] md:h-[80vh]">
+            <div class="horizontal-item flex-none w-[80vw] md:w-[40vw] border-r-grid p-8 md:p-12 flex flex-col cursor-pointer hover:bg-white transition-colors duration-500"
+                onclick="window.location.href='product.html?id=alpha-shell'">
+                <div class="flex-1 overflow-hidden pointer-events-none mb-6">
+                    <img src="assets/img/Untitled-1.png" class="w-full h-full object-contain">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">Alpha Shell 01</h3>
+                        <p class="font-mono text-[10px] opacity-60">SKU: SJ-991B</p>
+                    </div>
+                    <div class="font-mono text-accent font-bold">$520.00</div>
+                </div>
+            </div>
+
+            <div class="horizontal-item flex-none w-[80vw] md:w-[40vw] border-r-grid p-8 md:p-12 flex flex-col bg-brandWhite cursor-pointer hover:bg-neutral-50 transition-colors duration-500"
+                onclick="window.location.href='product.html?id=delta-shell'">
+                <div class="flex-1 overflow-hidden pointer-events-none mb-6">
+                    <img src="assets/img/hero_product_high_end_1767509554719.png" class="w-full h-full object-contain">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">Delta Shell 02</h3>
+                        <p class="font-mono text-[10px] opacity-60">SKU: SJ-822C</p>
+                    </div>
+                    <div class="font-mono text-accent font-bold">$640.00</div>
+                </div>
+            </div>
+
+            <div class="horizontal-item flex-none w-[80vw] md:w-[40vw] border-r-grid p-8 md:p-12 flex flex-col cursor-pointer hover:bg-white transition-colors duration-500"
+                onclick="window.location.href='product.html?id=combat-pants'">
+                <div class="flex-1 overflow-hidden pointer-events-none mb-6">
+                    <img src="assets/img/technical_combat_pants.png" class="w-full h-full object-contain grayscale">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">Combat Pants</h3>
+                        <p class="font-mono text-[10px] opacity-60">SKU: LN-310P</p>
+                    </div>
+                    <div class="font-mono text-accent font-bold">$310.00</div>
+                </div>
+            </div>
+
+            <div class="horizontal-item flex-none w-[80vw] md:w-[40vw] border-r-grid p-8 md:p-12 flex flex-col">
+                <div class="flex-1 overflow-hidden pointer-events-none mb-6">
+                    <img src="assets/img/stealth_pique.png" class="w-full h-full object-contain">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">Stealth Pique</h3>
+                        <p class="font-mono text-[10px] opacity-60">SKU: TV-200X</p>
+                    </div>
+                    <div class="font-mono text-accent font-bold">$280.00</div>
+                </div>
+            </div>
+            <div
+                class="horizontal-item flex-none w-[80vw] md:w-[40vw] p-8 md:p-12 flex items-center justify-center bg-black text-white">
+                <div class="text-center">
+                    <h2 class="text-4xl md:text-6xl font-black mb-8">GO TO<br>SHOP</h2>
+                    <a href="shop.html"
+                        class="magnetic-btn bg-accent text-white px-12 py-4 text-sm font-bold uppercase tracking-widest hover:scale-105 transition-transform inline-block">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white p-12 md:p-24">
+        <div class="flex flex-col md:flex-row justify-between items-start mb-24">
+            <div>
+                <h2 class="text-[12vw] font-black tracking-tighter leading-[0.8]">CLOTH®</h2>
+                <p class="font-mono text-[10px] uppercase tracking-[0.4em] mt-4">ARCHIVE 2026 / VOL.01</p>
+            </div>
+        </div>
+        <div
+            class="flex flex-col md:flex-row justify-between items-end border-t border-white/20 pt-12 opacity-40 font-mono text-[8px]">
+            <p>© 2026 CLOTH STUDIO. ALL RIGHTS RESERVED.</p>
+            <p>DESIGNED IN STOCKHOLM / BUILT WORLDWIDE</p>
+        </div>
+    </footer>
+
+    <!-- Logic -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            initIndexAnimations();
+
+            // Mobile Menu Logic
+            const menuToggle = document.getElementById('menu-toggle');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const spans = menuToggle.querySelectorAll('span');
+            const links = mobileMenu.querySelectorAll('a');
+
+            const toggleMenu = (forceClose = false) => {
+                const isActive = forceClose ? true : mobileMenu.classList.contains('active');
+
+                if (isActive || forceClose) {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                } else {
+                    mobileMenu.classList.add('active');
+                    document.body.classList.add('mobile-nav-open');
+                    gsap.to(spans[0], { y: 4, rotate: 45, duration: 0.3 });
+                    gsap.to(spans[1], { y: -4, rotate: -45, duration: 0.3 });
+                }
+            };
+
+            menuToggle.addEventListener('click', () => toggleMenu());
+            closeMenu.addEventListener('click', () => toggleMenu(true));
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.classList.remove('mobile-nav-open');
+                    gsap.to(spans[0], { y: 0, rotate: 0, duration: 0.3 });
+                    gsap.to(spans[1], { y: 0, rotate: 0, duration: 0.3 });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
